@@ -8,6 +8,6 @@ test('Visual regression - Masking', async ({ page }) => {
 
   // Perform visual comparison
   await expect(page).toHaveScreenshot({
-    mask: [page.locator('//*[@id="app"]/div[1]/div/div')]
+    mask: [page.locator('//*[@id="app"]/div[1]/div/div'), page.locator('//*[@id="site-content"]/div/div[1]/div/div[1]/div/div[2]/div/div/div[1]/div/section/a/figure/div/div/video')]
   })
 });
