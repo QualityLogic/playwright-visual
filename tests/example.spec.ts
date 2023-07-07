@@ -10,6 +10,7 @@ test('Visual regression - Masking', async ({ page }) => {
   // Perform visual comparison, while excluding the dynamic elements
   await expect(page).toHaveScreenshot({
     fullPage: true,
-    mask: [page.getByRole('presentation')]
+    // Multiple locators to exclude multiple elements, separated by commas (Not found in Docs)
+    mask: [page.getByRole('presentation'), page.getByLabel('email')]
   })
 });
