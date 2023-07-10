@@ -13,4 +13,11 @@ test('Visual regression - Masking', async ({ page }) => {
     // Multiple locators to exclude multiple elements, separated by commas (Not found in Docs)
     mask: [page.getByRole('presentation'), page.getByLabel('email')]
   })
+
+  await page.goto('https://www.checklyhq.com/not-found/');
+
+  await expect(page).toHaveScreenshot({
+    fullPage: true,
+    mask: [page.getByText('video'), page.getByText('intercom-lightweight-app-launcher intercom-launcher')]
+  })
 });
