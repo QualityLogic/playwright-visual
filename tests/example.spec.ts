@@ -20,6 +20,6 @@ test('Visual regression - Masking', async ({ page }) => {
   // Perform visual comparison while excluding the dynamic elements
   await expect(page).toHaveScreenshot({
     fullPage: true,
-    mask: [page.getByText('video'), page.getByText('intercom-lightweight-app-launcher intercom-launcher')]
+    mask: [page.getByText('video'), page.getByRole('presentation')]
   })
 });
