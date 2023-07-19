@@ -1,36 +1,13 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  timeout: 60000,
   testDir: './tests',
-  fullyParallel: true,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    headless: true,
     trace: 'on-first-retry',
-    screenshot: 'off'
+    extraHTTPHeaders:{
+      'content-type': 'application/json',
+      'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjBFNzVGNEMxNjMzRjRCODEwRjgxNTQzMDdEM0I5QTE0RkYzQzczMkIiLCJ0eXAiOiJhdCtqd3QiLCJ4NXQiOiJEblgwd1dNX1M0RVBnVlF3ZlR1YUZQODhjeXMifQ.eyJuYmYiOjE2ODk3MDYzMTAsImV4cCI6MTY4OTcwOTkxMCwiaXNzIjoiaHR0cHM6Ly9reXRlc3R3ZWIuY2RwZWhzLmNvbS9vYXV0aCIsImF1ZCI6IldVTUVJIiwiY2xpZW50X2lkIjoiRUJUMi40Iiwic2NvcGUiOlsiV1VNRUkuQ2FyZGhvbGRlckNhcmQiLCJXVU1FSS5DYXJkaG9sZGVyQ2FyZC5IaXN0b3J5IiwiV1VNRUkuQ2FyZGhvbGRlckNhcmQuTWFuYWdlIiwiV1VNRUkuQ2FyZGhvbGRlckNhcmQuUElOIiwiV1VNRUkuRUJBIiwiV1VNRUkuRUJBLkhpc3RvcnkiLCJXVU1FSS5FQkEuTWFuYWdlIiwiV1VNRUkuRmluYW5jaWFsLk1hbmFnZSIsIldVTUVJLkZvb2QiLCJXVU1FSS5PbmxpbmVTaG9wcGluZy5NYW5hZ2UiLCJXVU1FSS5WZW5kb3IuTWFuYWdlIiwiV1VNRUkuV2FyZWhvdXNlIiwiV1VNRUkuV2FyZWhvdXNlLk1hbmFnZSJdfQ.ZSWYltMdk8FgWOD6QQE6mnrEn5PJYx9q9kZ8dr7-2zCfxkXgw8JiETDTADvqwuTaur8AsGk_GcSOxqiFVrQ-UOf5KEAJ2I8XEEmfz3vPLZ7ZGlTXqq8zASyehuCQD57olYb8CXBrJPMmC7EQNngq3uxT6HnurXQ9g3PeSex8gx6uals9lOzrhfXwxwf_1NFnOC76jLxhX1jcyS_D7bfWHSRj7OtPz16GW2WhD9thomu834mEA5dOxHXl0adrtlcGTtWPTyq-M0byBAaX9RlULgTkeNCn_VXNeBfcuWUOkZ4_ZmIYOllLLWOKUTqqz8V7jwmERu8AcdO3PHUTNp5iTg'
+    }
   },
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
-
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-  ],
 });
