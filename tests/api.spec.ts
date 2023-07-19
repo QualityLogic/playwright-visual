@@ -1,7 +1,15 @@
 import { test, expect, request } from '@playwright/test';
 
 test('Playwright API Testing', async ({ request }) => {
-  const baseUrl = 'https://kytestweb.cdpehs.com/EBT2/AccountManagement/AccountDetails.aspx'
+
+  await request.post('https://kytestweb.cdpehs.com/EBT2/LogOn.aspx', {
+    form: {
+      'user': 'Quality.logic',
+      'password': 'p@ssword123'
+    }
+  })
+
+  const baseUrl = 'https://kytestweb.cdpehs.com/EBT2/AccountManagement/Default.aspx'
 
   await request.post(`${baseUrl}`), {
     data : {
